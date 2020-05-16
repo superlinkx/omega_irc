@@ -1,16 +1,22 @@
+import 'dart:io';
 import 'package:omega_irc/omega_irc.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('A group of tests', () {
-    Awesome awesome;
+  group('Client Tests', () {
+    var ircClient = IrcClient();
+    Socket connection;
 
-    setUp(() {
-      awesome = Awesome();
+    setUp(() async {
+      connection = await ircClient.connect('localhost', 80);
     });
 
-    test('First Test', () {
-      expect(awesome.isAwesome, isTrue);
+    test('Test IP Address Connection', () async {
+      await expectLater(connection.remoteAddress.address, equals('::1'));
+    });
+
+    test('Test IP Address Connection', () async {
+      await expectLater(connection.remoteAddress.address, equals('::1'));
     });
   });
 }

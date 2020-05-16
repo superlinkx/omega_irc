@@ -1,6 +1,10 @@
-// TODO: Put public facing types in this file.
+import 'dart:async';
+import 'dart:io';
 
-/// Checks if you are awesome. Spoiler: you are.
-class Awesome {
-  bool get isAwesome => true;
+/// IRC Client Class
+class IrcClient {
+  /// Creates a new socket connection
+  Future<Socket> connect(host, port) async {
+    return await Socket.connect('localhost', 80);
+  }
 }
