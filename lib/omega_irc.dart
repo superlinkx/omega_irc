@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library omega_irc;
 
-export 'src/omega_irc_base.dart';
+export 'src/client.dart';
 
 // TODO: Export any libraries intended for clients of this package.

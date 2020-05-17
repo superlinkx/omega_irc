@@ -3,20 +3,23 @@ import 'package:omega_irc/omega_irc.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Client Tests', () {
-    var ircClient = IrcClient();
+  group('Client Tests:', () {
+    OmegaIrcClient ircClient;
     Socket connection;
 
     setUp(() async {
-      connection = await ircClient.connect('localhost', 80);
+      ircClient = OmegaIrcClient('localhost', 6667, 'user');
+      connection = await ircClient.connection;
     });
 
-    test('Test IP Address Connection', () async {
+    test('Test IP Address', () async {
       await expectLater(connection.remoteAddress.address, equals('::1'));
+      print('Address: ${await connection.remoteAddress.address}');
     });
 
-    test('Test IP Address Connection', () async {
-      await expectLater(connection.remoteAddress.address, equals('::1'));
+    test('Test Port', () async {
+      await expectLater(connection.remotePort, equals(6667));
+      print('Port: ${await connection.remotePort}');
     });
   });
 }
