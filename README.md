@@ -1,4 +1,4 @@
-A simple IRC Client library compatible with Flutter
+A simple IRC client library compatible with Flutter
 
 ## Usage
 
