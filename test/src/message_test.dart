@@ -3,10 +3,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('Message Tests:', () {
-    test('failure', () {
-      expect(true, false);
-    });
-
     test('Parses IRC response message', () {
       var sampleMsg =
           '@aaa=bbb;ccc;example.com/ddd=eee :nick!ident@host.com PRIVMSG me :Hello';
