@@ -5,7 +5,7 @@ void main() async {
   var port = 6667;
   var user = 'derpy';
 
-  var ircClient = OmegaIrcClient(host, port, user);
+  var ircClient = Client(host, port, user);
   ircClient.ircMessage.listen((event) {
     print(event);
   });

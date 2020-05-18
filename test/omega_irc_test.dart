@@ -4,11 +4,11 @@ import 'package:test/test.dart';
 
 void main() {
   group('Client Tests:', () {
-    OmegaIrcClient ircClient;
+    Client ircClient;
     Socket connection;
 
     setUp(() async {
-      ircClient = OmegaIrcClient('localhost', 6667, 'user');
+      ircClient = Client('localhost', 6667, 'user');
       connection = await ircClient.connection;
     });
 
