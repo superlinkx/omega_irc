@@ -1,4 +1,4 @@
-/// IRC Client Library
+/// Simple IRC client library
 library omega_irc;
 
 export 'src/connection.dart';

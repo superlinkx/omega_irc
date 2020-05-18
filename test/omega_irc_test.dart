@@ -8,8 +8,8 @@ void main() {
     Socket connection;
 
     setUp(() async {
-      ircClient = Connection('localhost', 6667, 'user');
-      connection = await ircClient.connection;
+      ircClient = Connection('localhost', 6667, 'user', 'user');
+      connection = await ircClient.socket;
     });
 
     test('Test IP Address', () async {

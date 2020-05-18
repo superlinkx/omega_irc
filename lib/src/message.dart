@@ -71,7 +71,7 @@ class Message {
   /// The command contained in the Message
   String get command => _command;
 
-  /// The actual text in the Message
+  /// The message text in the Message
   String get message => _message;
 
   /// List of the parameters in the Message
