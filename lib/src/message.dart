@@ -14,7 +14,7 @@ class Message {
       r'^(?:@([^\r\n ]*) +|())(?::([^\r\n ]+) +|())([^\r\n ]+)(?: +([^:\r\n ]+[^\r\n ]*(?: +[^:\r\n ]+[^\r\n ]*)*)|())?(?: +:([^\r\n]*)| +())?[\r\n]*$');
 
   /// Main constructor takes in an IRC ASCII string
-  Message(rawText) {
+  Message(String rawText) {
     _rawText = rawText;
     _parseMessageComponents(rawText);
   }
