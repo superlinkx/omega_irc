@@ -8,7 +8,7 @@ class Message {
   List<String> _paramsList;
   Map<String, String> _tagMap;
 
-  /// This RegEx can split responses out into their component parts for us\n
+  /// This RegEx can split responses out into their component parts for us
   /// Source: https://gist.github.com/DanielOaks/ef8b21a25a4db5899015
   final _splitter = RegExp(
       r'^(?:@([^\r\n ]*) +|())(?::([^\r\n ]+) +|())([^\r\n ]+)(?: +([^:\r\n ]+[^\r\n ]*(?: +[^:\r\n ]+[^\r\n ]*)*)|())?(?: +:([^\r\n]*)| +())?[\r\n]*$');
