@@ -1,14 +1,14 @@
 import 'dart:io';
-import 'package:omega_irc/omega_irc.dart';
+import 'package:omega_irc/client.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('Client Tests:', () {
-    Client ircClient;
+    Connection ircClient;
     Socket connection;
 
     setUp(() async {
-      ircClient = Client('localhost', 6667, 'user');
+      ircClient = Connection('localhost', 6667, 'user');
       connection = await ircClient.connection;
     });
 

@@ -5,7 +5,7 @@ import 'dart:io';
 import 'message.dart';
 
 /// IRC Client Wrapper
-class Client {
+class Connection {
   Future<Socket> _connection;
   final String _host;
   final int _port;
@@ -15,7 +15,7 @@ class Client {
   final StreamController _ircMessageController = StreamController.broadcast();
 
   /// Takes a host and a port and creates a new session
-  Client(this._host, this._port, this._user) {
+  Connection(this._host, this._port, this._user) {
     _connection = Socket.connect(_host, _port);
     _connection.then((socket) {
       socket.writeln('USER $_user $_user $_user $_user');

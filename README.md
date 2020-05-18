@@ -1,11 +1,11 @@
-A library for Dart developers.
+A simple IRC Client library compatible with Flutter
 
 ## Usage
 
-A simple usage example:
+Creating a simple connection:
 
 ```dart
-import 'package:omega_irc/omega_irc.dart';
+import 'package:omega_irc';
 
 main() {
   var awesome = new Awesome();
