@@ -1,7 +1,7 @@
 /// Represents an IRC message
 /// Heavily inspired by github.com/SpinlockLabs/irc.dart
 class Message {
-  String _rawText;
+  final String _rawText;
   String _hostmask;
   String _command;
   String _message;
@@ -14,18 +14,17 @@ class Message {
       r'^(?:@([^\r\n ]*) +|())(?::([^\r\n ]+) +|())([^\r\n ]+)(?: +([^:\r\n ]+[^\r\n ]*(?: +[^:\r\n ]+[^\r\n ]*)*)|())?(?: +:([^\r\n]*)| +())?[\r\n]*$');
 
   /// Main constructor takes in an IRC ASCII string
-  Message(String rawText) {
-    _rawText = rawText;
-    _parseMessageComponents(rawText);
+  Message(this._rawText) {
+    _parseMessageComponents();
   }
 
   /// String constructor takes an input string to start a new object
   Message.fromString(this._rawText);
 
   /// Parse raw IRC ASCII string into components
-  void _parseMessageComponents(rawText) {
+  void _parseMessageComponents() {
     List<String> match;
-    var parsed = _splitter.firstMatch(rawText);
+    var parsed = _splitter.firstMatch(_rawText);
 
     /// If there is no data at this point, we didn't get a valid string
     /// Should throw an error in the future
