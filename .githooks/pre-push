@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# pub get
+pub get
 
-# dartanalyzer .
-# if [ $? -ne 0 ]; then
-#   exit 1
-# fi
+dartanalyzer .
+if [ $? -ne 0 ]; then
+  exit 1
+fi
 
-# pub run test
-# if [ $? -ne 0 ]; then
-#   exit 1
-# fi
+pub run test
+if [ $? -ne 0 ]; then
+  exit 1
+fi
