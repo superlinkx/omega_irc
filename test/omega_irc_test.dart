@@ -14,12 +14,10 @@ void main() {
 
     test('Test IP Address', () async {
       await expectLater(connection.remoteAddress.address, equals('::1'));
-      print('Address: ${await connection.remoteAddress.address}');
     });
 
     test('Test Port', () async {
       await expectLater(connection.remotePort, equals(6667));
-      print('Port: ${await connection.remotePort}');
     });
   });
 }

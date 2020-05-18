@@ -2,17 +2,14 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:io';
 
+import 'message.dart';
+
 /// IRC Client Wrapper
 class OmegaIrcClient {
   Future<Socket> _connection;
   final String _host;
   final int _port;
   final String _user;
-
-  /// This RegEx can split responses out into their component parts for us\n
-  /// Source: https://gist.github.com/DanielOaks/ef8b21a25a4db5899015
-  final _splitter = RegExp(
-      r'^(?:@([^\r\n ]*) +|())(?::([^\r\n ]+) +|())([^\r\n ]+)(?: +([^:\r\n ]+[^\r\n ]*(?: +[^:\r\n ]+[^\r\n ]*)*)|())?(?: +:([^\r\n]*)| +())?[\r\n]*$');
 
   /// Creates a stream the user can consume to get parsed messages
   final StreamController _ircMessageController = StreamController.broadcast();
@@ -29,42 +26,25 @@ class OmegaIrcClient {
 
   /// Handles new data events from the socket
   void _onData(Uint8List data) {
-    var lines = String.fromCharCodes(data).split('\n');
+    var lines = String.fromCharCodes(data).split('\r\n');
     lines.forEach((line) {
+      /// Make sure the line is cleaned up before creating the Message object
       line = line.trimLeft();
-      List<String> match;
-      var parsed = _splitter.firstMatch(line);
-      if (parsed == null) {
-        return;
-      }
-      match = List<String>.generate(parsed.groupCount + 1, parsed.group);
+      var msg = Message(line);
 
-      var rawTags = match[1];
-      var hostmask = match[3];
-      var command = match[5];
-      var param = match[6];
-      var msg = match[8];
-      var parameters = param != null ? param.split(' ') : <String>[];
-
-      var message = 'Raw Tags: $rawTags\n' +
-          'Host: $hostmask\n' +
-          'Command: $command\n' +
-          'Parameters: $parameters\n' +
-          'Message: $msg\n';
-
-      if (command == 'PING') {
+      if (msg.command == 'PING') {
         _connection.then((socket) {
-          var pong = 'PONG :$msg';
+          var pong = 'PONG :${msg.message}';
           socket.writeln(pong);
         });
       }
 
-      if (command == '001') {
+      if (msg.command == '001') {
         _connection.then((socket) {
           socket.writeln('JOIN #derpy');
         });
       }
-      _ircMessageController.add(line);
+      _ircMessageController.add(msg.rawText);
     });
   }
 
