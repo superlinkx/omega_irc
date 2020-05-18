@@ -88,7 +88,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">Message</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-rawText"><span class="type-annotation">dynamic</span> <span class="parameter-name">rawText</span></span></li>
+      <span class="name ">Message</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-rawText"><span class="type-annotation">String</span> <span class="parameter-name">rawText</span></span></li>
 </ol>)
     </section>
 
@@ -98,7 +98,7 @@
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Message(rawText) {
+      <pre class="language-dart"><code class="language-dart">Message(String rawText) {
   _rawText = rawText;
   _parseMessageComponents(rawText);
 }</code></pre>
