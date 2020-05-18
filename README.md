@@ -5,10 +5,17 @@ A simple IRC Client library compatible with Flutter
 Creating a simple connection:
 
 ```dart
-import 'package:omega_irc';
+import 'package:omega_irc/client.dart';
 
-main() {
-  var awesome = new Awesome();
+void main() async {
+  var host = 'localhost';
+  var port = 6667;
+  var user = 'derpy';
+
+  var ircClient = Connection(host, port, user);
+  ircClient.ircMessage.listen((event) {
+    print(event);
+  });
 }
 ```
 
